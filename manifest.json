@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "Show the current weather.",
   "action": {
-    "default_popup": "index.html",
+    "default_popup": "dist/index.html",
     "default_icon": "images/hi.png"
   }
 }

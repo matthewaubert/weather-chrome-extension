@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","mappings":";;;;;AAAA","sources":["webpack://weather-chrome-extension/./src/index.js"],"sourcesContent":["console.log('this is a popup!');"],"names":[],"sourceRoot":""}
