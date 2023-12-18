@@ -2,58 +2,13 @@ import { format } from 'date-fns';
 import wiMap from './maps/wi-map.js';
 import colorMap from './maps/color-map.js';
 import dom from './maps/dom.js';
-import {
-  storageAvailable,
-  serializeSystem,
-  deserializeSystem,
-} from './local-storage.js';
-
-// add event listeners
-dom.systemToggle.addEventListener('change', switchSystem);
-
-// variable to hold weather data cache
-let weatherDataCache;
-
-// measurement systems
-const imperial = {
-  name: 'imperial',
-  temp: 'F',
-  speed: 'Mph',
-};
-const metric = {
-  name: 'metric',
-  temp: 'C',
-  speed: 'Kph',
-};
-let system = initSystem();
-
-// init system to value in localStorage or default to imperial
-function initSystem() {
-  if (storageAvailable('localStorage') && localStorage.getItem('wceSystem')) {
-    // if system is metric, check slider and return metric
-    if (deserializeSystem() === 'metric') {
-      dom.systemToggle.checked = true;
-      return metric;
-    }
-  }
-
-  return imperial; // default to imperial
-}
-
-// switch system between imperial and metric
-function switchSystem() {
-  system = system.name === 'imperial' ? metric : imperial;
-  if (storageAvailable('localStorage')) serializeSystem(system.name); // cache system
-  renderWeather(weatherDataCache);
-}
 
 // run all render funcs to display weather data
-export default function renderWeather(data) {
-  weatherDataCache = data; // cache weather data for later use
+export default function renderWeather(data, system) {
   renderLocation(data.current);
-  renderCurrentWeatherPrimary(data.current);
-  renderCurrentWeatherSecondary(data.current);
-  renderForecast(data.forecast);
+  renderCurrentWeatherPrimary(data.current, system);
+  renderCurrentWeatherSecondary(data.current, system);
+  renderForecast(data.forecast, system);
   renderColorScheme(data.current);
 }
 
@@ -68,7 +23,7 @@ function renderLocation(data) {
 }
 
 // render primary current weather info
-function renderCurrentWeatherPrimary(data) {
+function renderCurrentWeatherPrimary(data, system) {
   dom.current.icon.innerText = data.isDay
     ? wiMap.day[data.condition.code]
     : wiMap.night[data.condition.code]; // render icon
@@ -80,7 +35,7 @@ function renderCurrentWeatherPrimary(data) {
 }
 
 // render secondary current weather info
-function renderCurrentWeatherSecondary(data) {
+function renderCurrentWeatherSecondary(data, system) {
   dom.today.highLow.innerText = `${data[`maxTemp${system.temp}`]}° / ${
     data[`minTemp${system.temp}`]
   }°`;
@@ -97,7 +52,7 @@ function renderCurrentWeatherSecondary(data) {
 }
 
 // render forecast weather info
-function renderForecast(data) {
+function renderForecast(data, system) {
   // iterate over each day in forecast
   dom.forecast.forEach((day, i) => {
     // render title

@@ -1,8 +1,11 @@
 import getWeatherData from './weather-data.js';
 import renderWeather, { toggleLoadComponent } from './render.js';
+import System from './classes/system.js';
 import dom from './maps/dom.js';
 import {
   storageAvailable,
+  serializeSystem,
+  deserializeSystem,
   deserializeLocation,
   serializeLocation,
 } from './local-storage.js';
@@ -10,9 +13,22 @@ import {
 // add event listeners
 document.addEventListener('DOMContentLoaded', initApp);
 dom.form.form.addEventListener('submit', handleSearch);
+dom.systemToggle.addEventListener('change', switchSystem);
 
-// init app with weather from cached location or philadelphia
+// variables for system and weather data cache
+let currentSystem;
+let weatherDataCache;
+
+// init system and weather
 function initApp() {
+  // init system with value in localStorage or default to imperial
+  if (storageAvailable('localStorage') && localStorage.getItem('wceSystem')) {
+    // if system is metric, check slider and return metric
+    currentSystem = System.getNewSystem(deserializeSystem());
+    if (currentSystem.name === 'metric') dom.systemToggle.checked = true;
+  }
+
+  // init weather with location from localStorage or default to philadelphia
   if (storageAvailable('localStorage') && localStorage.getItem('wceLocation')) {
     showWeather(deserializeLocation());
   } else {
@@ -25,7 +41,8 @@ async function showWeather(location) {
   toggleLoadComponent(); // show loading component
   const weatherData = await getWeatherData(location);
   if (weatherData !== null) {
-    renderWeather(weatherData);
+    weatherDataCache = weatherData;
+    renderWeather(weatherData, currentSystem);
     if (storageAvailable('localStorage')) serializeLocation(location); // cache location in localStorage
   }
   toggleLoadComponent(); // hide loading component
@@ -35,4 +52,12 @@ async function showWeather(location) {
 function handleSearch(e) {
   e.preventDefault();
   showWeather(dom.form.searchInput.value);
+}
+
+// switch system between imperial and metric
+function switchSystem() {
+  currentSystem.switchSystem();
+
+  if (storageAvailable('localStorage')) serializeSystem(currentSystem.name); // cache system name in localStorage
+  renderWeather(weatherDataCache, currentSystem);
 }
