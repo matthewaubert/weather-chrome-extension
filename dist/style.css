@@ -11,7 +11,341 @@
   font-style: normal;
 }
 
+/* general */
+
+:root {
+  /* cloudy, foggy, etc. */
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  /* day */
+  --sky-300: #7dd3fc;
+  --sky-600: #0284c7;
+  --sky-800: #075985;
+  --sky-900: #0c4a6e;
+  /* night */
+  --blue-400: #60a5fa;
+  --blue-800: #1e40af;
+  --blue-950: #172554;
+  --blue-975: #0e1734;
+  /* inclement weather */
+  --purple-400: #c084fc;
+  --purple-700: #7e22ce;
+  --purple-900: #581c87;
+  --purple-950: #3b0764;
+  /* error */
+  --red: #ef4444;
+  /* color scheme */
+  --bg-gradient: var(--sky-600), var(--sky-900);
+  --search-bar: var(--sky-800);
+  --text-light: var(--sky-300);
+  /* spacing */
+  --gap-025: 0.1rem;
+  --gap-050: 0.2rem;
+  --gap-100: 0.4rem;
+  --gap-150: 0.6rem;
+  --gap-200: 0.8rem;
+  --gap-250: 1.0rem;
+  --gap-400: 1.6rem;
+  --gap-500: 2.0rem;
+  --gap-600: 2.4rem;
+  --gap-800: 3.2rem;
+  /* other variables */
+  --shadow-2: 0 0 5px rgba(0,0,0,0.2);
+  --shadow-3: 0 0 5px rgba(0,0,0,0.3);
+  --transition-fast: all .1s ease-in-out;
+  --transition-slow: all .4s ease-in-out;
+  --font-stack: 'Nunito', 'Helvetica', 'Arial', sans-serif;
+  --moon: 1.76rem;
+  color: white;
+  line-height: 1.25;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: var(--transition-fast);
+}
+
+html {
+  width: 390px;
+}
+
+body {
+  background: linear-gradient(var(--bg-gradient));
+  font-family: var(--font-stack);
+}
+
+button, input[type=search] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  font-family: var(--font-stack);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.63rem;
+}
+
+h4 {
+  font-size: 1.28rem;
+}
+
+h5, .high {
+  font-size: 1.2rem;
+}
+
+h6, .low, p {
+  font-size: 1rem;
+}
+
+h6 {
+  color: var(--text-light);
+}
+
+header, main {
+  margin: auto;
+  max-width: 704px;
+  padding-left: var(--gap-600);
+  padding-right: var(--gap-600);
+}
+
 .wi {
+  color: white;
   font-family: "Weather Icons", sans-serif;
   line-height: 1.5;
+}
+
+/* header */
+
+header {
+  display: grid;
+  justify-items: center;
+  gap: var(--gap-150) var(--gap-800);
+  padding-top: var(--gap-400);
+  padding-bottom: var(--gap-400);
+}
+
+header > div {
+  display: flex;
+  gap: var(--gap-200);
+  width: 100%;
+}
+
+form {
+  position: relative;
+  flex: 1 1 auto;
+  display: grid;
+  min-width: 0;
+}
+
+#search-input {
+  background-color: var(--search-bar);
+  border-radius: 24px;
+  box-shadow: inset var(--shadow-2);
+  color: white;
+  font-size: 1rem;
+  padding: var(--gap-100) var(--gap-600) var(--gap-100) var(--gap-250);
+  min-width: 0;
+  height: 2.3rem;
+}
+
+#search-input::placeholder {
+  color: var(--gray-400);
+  font-size: 1rem;
+}
+
+#search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--gray-400);
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
+  background-size: 20px 20px;
+  height: 20px;
+  width: 20px;
+}
+
+#search-submit {
+  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  top: 6px;
+}
+
+button > svg {
+  fill: white;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* unit toggle switch */
+
+.switch {
+  flex: 0 0 auto;
+  position: relative;
+  display: inline-block;
+  width: 4.6rem;
+  height: 2.3rem;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  border-radius: 34px;
+  box-shadow: inset var(--shadow-2);
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--search-bar);
+  -webkit-transition: var(--transition-slow);
+  transition: var(--transition-slow);
+  display: grid;
+}
+
+.slider::before {
+  border-radius: 50%;
+  position: absolute;
+  font-family: "Weather Icons";
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  content: "\f055";
+  height: 1.8rem;
+  width: 1.8rem;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: var(--transition-slow);
+  transition: var(--transition-slow);
+  display: grid;
+  place-content: center;
+  z-index: 1;
+}
+
+input:checked + .slider::before {
+  -webkit-transform: translateX(2.3rem);
+  -ms-transform: translateX(2.3rem);
+  transform: translateX(2.3rem);
+}
+
+.imperial, .metric {
+  color: white;
+  padding-top: 3px;
+  position: absolute;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.imperial {
+  place-self: center end;
+  padding-right: 14px;
+}
+
+.metric {
+  place-self: center start;
+  padding-left: 12px;
+}
+
+.error {
+  color: var(--red);
+  font-weight: 700;
+  grid-column: 1 / -1;
+}
+
+/* location */
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-500);
+  padding-bottom: var(--gap-600);
+}
+
+.reg-country {
+  margin-top: -0.1rem;
+}
+
+.time {
+  color: var(--text-light);
+  margin-top: var(--gap-050);
+}
+
+/* current weather */
+
+.current {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  justify-content: space-around;
+  place-items: center;
+  margin-top: -0.7rem;
+}
+
+.condition-icon {
+  font-size: 4.84rem;
+}
+
+.current-temp {
+  font-size: 4.27rem;
+  font-weight: bold;
+}
+
+.condition-text,
+.current-feelslike {
+  text-align: center;
+}
+
+.current-feelslike {
+  align-self: baseline;
+  color: var(--text-light);
+}
+
+/* today's weather */
+
+.today {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr 1fr;
+  gap: var(--gap-250);
+}
+
+.today > .header,
+.forecast > .header {
+  grid-column: 1 / -1;
+  margin-bottom: -0.4rem;
+}
+
+.today > div {
+  display: grid;
+  grid-template-rows: auto var(--moon);
+  gap: var(--gap-025);
+}
+
+.today > div > *:last-child {
+  align-self: center;
+}
+
+.moon-phase .wi {
+  font-size: var(--moon);
+  line-height: 1;
 }
