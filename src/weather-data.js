@@ -1,7 +1,7 @@
 import { parse } from 'date-fns';
 import CurrentWeather from './classes/current-weather.js';
 import Forecast from './classes/forecast.js';
-import dom from './dom.js';
+import dom from './maps/dom.js';
 
 // fetch and process weather data;
 // input: location;

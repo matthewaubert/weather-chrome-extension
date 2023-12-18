@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import wiMap from './maps/wi-map.js';
 import colorMap from './maps/color-map.js';
-import dom from './dom.js';
+import dom from './maps/dom.js';
 import {
   storageAvailable,
   serializeSystem,
@@ -139,15 +139,15 @@ function renderColorScheme(data) {
 
   dom.root.style.setProperty(
     '--bg-gradient',
-    colors[colorMap[dayOrNight][data.condition.code]].bg
+    colors[colorMap[dayOrNight][data.condition.code]].bg,
   );
   dom.root.style.setProperty(
     '--search-bar',
-    colors[colorMap[dayOrNight][data.condition.code]].searchBar
+    colors[colorMap[dayOrNight][data.condition.code]].searchBar,
   );
   dom.root.style.setProperty(
     '--text-light',
-    colors[colorMap[dayOrNight][data.condition.code]].textLight
+    colors[colorMap[dayOrNight][data.condition.code]].textLight,
   );
 }
 

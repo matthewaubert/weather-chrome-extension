@@ -1,6 +1,6 @@
 import getWeatherData from './weather-data.js';
 import renderWeather, { toggleLoadComponent } from './render.js';
-import dom from './dom.js';
+import dom from './maps/dom.js';
 import {
   storageAvailable,
   deserializeLocation,
