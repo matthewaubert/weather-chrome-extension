@@ -1,6 +1,7 @@
 import { parse } from 'date-fns';
 import CurrentWeather from './classes/current-weather.js';
 import Forecast from './classes/forecast.js';
+import dom from './dom.js';
 
 // fetch and process weather data;
 // input: location;
@@ -26,10 +27,12 @@ async function fetchWeather(location) {
     // if response not okay throw error
     if (!response.ok) throw new Error(`${location} not found`);
 
+    dom.errorDisplay.innerText = '';
     const weatherData = await response.json();
     return weatherData;
   } catch (err) {
     // add error text to error display
+    dom.errorDisplay.innerText = err;
     return null;
   }
 }

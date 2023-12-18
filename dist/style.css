@@ -1,0 +1,17 @@
+/* Weather Icons */
+
+@font-face {
+  font-family: "Weather Icons";
+  src: url("fonts/weathericons-regular-webfont.eot");
+  src: url("fonts/weathericons-regular-webfont.eot") format("embedded-opentype"),
+       url("fonts/weathericons-regular-webfont.woff2") format("woff2"),
+       url("fonts/weathericons-regular-webfont.woff") format("woff"),
+       url("fonts/weathericons-regular-webfont.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.wi {
+  font-family: "Weather Icons", sans-serif;
+  line-height: 1.5;
+}
