@@ -1,20 +1,36 @@
 import getWeatherData from './weather-data.js';
 import renderWeather from './render.js';
 import dom from './dom.js';
+import {
+  storageAvailable,
+  deserializeLocation,
+  serializeLocation,
+} from './local-storage.js';
 
-showWeather('Philadelphia');
+// add event listeners
+document.addEventListener('DOMContentLoaded', initApp);
 dom.form.form.addEventListener('submit', handleSearch);
+
+// init app with weather from cached location or philadelphia
+function initApp() {
+  if (storageAvailable('localStorage') && localStorage.getItem('wceLocation')) {
+    showWeather(deserializeLocation());
+  } else {
+    showWeather('philadelphia');
+  }
+}
 
 // get weather data and render to display
 async function showWeather(location) {
   const weatherData = await getWeatherData(location);
   if (weatherData !== null) {
     renderWeather(weatherData);
-    console.log(weatherData);
+    if (storageAvailable('localStorage')) serializeLocation(location); // cache location in localStorage
   }
 }
 
-async function handleSearch(e) {
+// prevent form submission and fetch weather
+function handleSearch(e) {
   e.preventDefault();
   showWeather(dom.form.searchInput.value);
 }

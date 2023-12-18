@@ -1,6 +1,11 @@
 import { format } from 'date-fns';
 import wiMap from './maps/wi-map.js';
 import dom from './dom.js';
+import {
+  storageAvailable,
+  serializeSystem,
+  deserializeSystem,
+} from './local-storage.js';
 
 // add event listeners
 dom.systemToggle.addEventListener('change', switchSystem);
@@ -19,11 +24,25 @@ const metric = {
   temp: 'C',
   speed: 'Kph',
 };
-let system = imperial;
+let system = initSystem();
+
+// init system to value in localStorage or default to imperial
+function initSystem() {
+  if (storageAvailable('localStorage') && localStorage.getItem('wceSystem')) {
+    // if system is metric, check slider and return metric
+    if (deserializeSystem() === 'metric') {
+      dom.systemToggle.checked = true;
+      return metric;
+    }
+  }
+
+  return imperial; // default to imperial
+}
 
 // switch system between imperial and metric
 function switchSystem() {
   system = system.name === 'imperial' ? metric : imperial;
+  if (storageAvailable('localStorage')) serializeSystem(system.name); // cache system
   renderWeather(weatherDataCache);
 }
 
