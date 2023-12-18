@@ -87,12 +87,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var dom = {
-  errorDisplay: document.querySelector('.error'),
   form: {
     form: document.querySelector('form'),
     searchInput: document.querySelector('#search-input')
   },
   systemToggle: document.querySelector('#system-toggle'),
+  errorDisplay: document.querySelector('.error'),
   location: {
     city: document.querySelector('.city'),
     region: document.querySelector('.region'),
@@ -115,7 +115,26 @@ var dom = {
     sunrise: document.querySelector('.sunrise').lastElementChild,
     sunset: document.querySelector('.sunset').lastElementChild,
     moonPhase: document.querySelector('.moon-phase').lastElementChild
-  }
+  },
+  forecast: [{
+    title: document.querySelector('.day0').children[0],
+    high: document.querySelector('.day0 .high'),
+    low: document.querySelector('.day0 .low'),
+    icon: document.querySelector('.day0').children[2],
+    condition: document.querySelector('.day0').children[3]
+  }, {
+    title: document.querySelector('.day1').children[0],
+    high: document.querySelector('.day1 .high'),
+    low: document.querySelector('.day1 .low'),
+    icon: document.querySelector('.day1').children[2],
+    condition: document.querySelector('.day1').children[3]
+  }, {
+    title: document.querySelector('.day2').children[0],
+    high: document.querySelector('.day2 .high'),
+    low: document.querySelector('.day2 .low'),
+    icon: document.querySelector('.day2').children[2],
+    condition: document.querySelector('.day2').children[3]
+  }]
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dom);
 
@@ -389,6 +408,7 @@ function renderWeather(data) {
   renderLocation(data.current);
   renderCurrentWeatherPrimary(data.current);
   renderCurrentWeatherSecondary(data.current);
+  renderForecast(data.forecast);
 }
 
 // render location display with weather data
@@ -418,6 +438,19 @@ function renderCurrentWeatherSecondary(data) {
   _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.sunrise.innerText = data.sunrise;
   _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.sunset.innerText = data.sunset;
   _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.moonPhase.innerText = _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].moonPhase[data.moonPhase];
+}
+
+// render forecast weather info
+function renderForecast(data) {
+  // iterate over each day in forecast
+  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].forecast.forEach(function (day, i) {
+    // render title
+    if (day.title.innerText !== 'Today') day.title.innerText = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__.format)(data[i].date, 'cccc');
+    day.high.innerText = "".concat(data[i]["maxTemp".concat(system.temp)], "\xB0"); // render high
+    day.low.innerText = "/ ".concat(data[i]["minTemp".concat(system.temp)], "\xB0"); // render low
+    day.icon.innerText = _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].day[data[i].condition.code]; // render icon
+    day.condition.innerText = data[i].condition.text; // render condition
+  });
 }
 
 /***/ }),

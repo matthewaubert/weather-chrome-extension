@@ -1,10 +1,10 @@
 const dom = {
-  errorDisplay: document.querySelector('.error'),
   form: {
     form: document.querySelector('form'),
     searchInput: document.querySelector('#search-input'),
   },
   systemToggle: document.querySelector('#system-toggle'),
+  errorDisplay: document.querySelector('.error'),
   location: {
     city: document.querySelector('.city'),
     region: document.querySelector('.region'),
@@ -28,6 +28,29 @@ const dom = {
     sunset: document.querySelector('.sunset').lastElementChild,
     moonPhase: document.querySelector('.moon-phase').lastElementChild,
   },
+  forecast: [
+    {
+      title: document.querySelector('.day0').children[0],
+      high: document.querySelector('.day0 .high'),
+      low: document.querySelector('.day0 .low'),
+      icon: document.querySelector('.day0').children[2],
+      condition: document.querySelector('.day0').children[3],
+    },
+    {
+      title: document.querySelector('.day1').children[0],
+      high: document.querySelector('.day1 .high'),
+      low: document.querySelector('.day1 .low'),
+      icon: document.querySelector('.day1').children[2],
+      condition: document.querySelector('.day1').children[3],
+    },
+    {
+      title: document.querySelector('.day2').children[0],
+      high: document.querySelector('.day2 .high'),
+      low: document.querySelector('.day2 .low'),
+      icon: document.querySelector('.day2').children[2],
+      condition: document.querySelector('.day2').children[3],
+    },
+  ],
 };
 
 export default dom;

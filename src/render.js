@@ -33,6 +33,7 @@ export default function renderWeather(data) {
   renderLocation(data.current);
   renderCurrentWeatherPrimary(data.current);
   renderCurrentWeatherSecondary(data.current);
+  renderForecast(data.forecast);
 }
 
 // render location display with weather data
@@ -72,4 +73,18 @@ function renderCurrentWeatherSecondary(data) {
   dom.today.sunrise.innerText = data.sunrise;
   dom.today.sunset.innerText = data.sunset;
   dom.today.moonPhase.innerText = wiMap.moonPhase[data.moonPhase];
+}
+
+// render forecast weather info
+function renderForecast(data) {
+  // iterate over each day in forecast
+  dom.forecast.forEach((day, i) => {
+    // render title
+    if (day.title.innerText !== 'Today')
+      day.title.innerText = format(data[i].date, 'cccc');
+    day.high.innerText = `${data[i][`maxTemp${system.temp}`]}°`; // render high
+    day.low.innerText = `/ ${data[i][`minTemp${system.temp}`]}°`; // render low
+    day.icon.innerText = wiMap.day[data[i].condition.code]; // render icon
+    day.condition.innerText = data[i].condition.text; // render condition
+  });
 }
