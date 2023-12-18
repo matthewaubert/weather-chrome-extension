@@ -134,7 +134,11 @@ var dom = {
     low: document.querySelector('.day2 .low'),
     icon: document.querySelector('.day2').children[2],
     condition: document.querySelector('.day2').children[3]
-  }]
+  }],
+  loadComponent: {
+    backdrop: document.querySelector('.backdrop'),
+    spinner: document.querySelector('.spinner')
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dom);
 
@@ -430,7 +434,8 @@ var wiMap = {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ renderWeather)
+/* harmony export */   "default": () => (/* binding */ renderWeather),
+/* harmony export */   toggleLoadComponent: () => (/* binding */ toggleLoadComponent)
 /* harmony export */ });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/format.mjs");
 /* harmony import */ var _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./maps/wi-map.js */ "./src/maps/wi-map.js");
@@ -529,6 +534,14 @@ function renderForecast(data) {
     day.condition.innerText = data[i].condition.text; // render condition
   });
 }
+
+// toggle backdrop and spinner
+function toggleLoadComponent() {
+  Object.keys(_dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].loadComponent).forEach(function (el) {
+    _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].loadComponent[el].classList.toggle('visible');
+  });
+}
+
 
 /***/ }),
 
@@ -8007,15 +8020,17 @@ function _showWeather() {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          (0,_render_js__WEBPACK_IMPORTED_MODULE_1__.toggleLoadComponent)(); // show loading component
+          _context.next = 3;
           return (0,_weather_data_js__WEBPACK_IMPORTED_MODULE_0__["default"])(location);
-        case 2:
+        case 3:
           weatherData = _context.sent;
           if (weatherData !== null) {
             (0,_render_js__WEBPACK_IMPORTED_MODULE_1__["default"])(weatherData);
             if ((0,_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.storageAvailable)('localStorage')) (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.serializeLocation)(location); // cache location in localStorage
           }
-        case 4:
+          (0,_render_js__WEBPACK_IMPORTED_MODULE_1__.toggleLoadComponent)(); // hide loading component
+        case 6:
         case "end":
           return _context.stop();
       }

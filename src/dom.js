@@ -51,6 +51,10 @@ const dom = {
       condition: document.querySelector('.day2').children[3],
     },
   ],
+  loadComponent: {
+    backdrop: document.querySelector('.backdrop'),
+    spinner: document.querySelector('.spinner'),
+  },
 };
 
 export default dom;

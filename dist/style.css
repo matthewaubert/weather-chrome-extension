@@ -378,3 +378,48 @@ main {
 .forecast .wi {
   font-size: min(calc(2.1rem + 2.6vw), 3.6rem);
 }
+
+/* loading component */
+
+.backdrop {
+  background-color: rgba(0,0,0,0.3);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: var(--transition-slow);
+}
+
+.spinner {
+  width: min(calc(3.8rem + 4.25vw), 6rem);
+  height: min(calc(3.8rem + 4.25vw), 6rem);
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(var(--shadow-2));
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+*.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.spinner > path {
+  fill: #fff;
+  transform-origin: center;
+  animation: spinner_svv2 .75s infinite linear;
+}
+
+@keyframes spinner_svv2 {
+  100% {
+    transform: rotate(360deg);
+  }
+}

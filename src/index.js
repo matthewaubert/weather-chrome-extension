@@ -1,5 +1,5 @@
 import getWeatherData from './weather-data.js';
-import renderWeather from './render.js';
+import renderWeather, { toggleLoadComponent } from './render.js';
 import dom from './dom.js';
 import {
   storageAvailable,
@@ -22,11 +22,13 @@ function initApp() {
 
 // get weather data and render to display
 async function showWeather(location) {
+  toggleLoadComponent(); // show loading component
   const weatherData = await getWeatherData(location);
   if (weatherData !== null) {
     renderWeather(weatherData);
     if (storageAvailable('localStorage')) serializeLocation(location); // cache location in localStorage
   }
+  toggleLoadComponent(); // hide loading component
 }
 
 // prevent form submission and fetch weather

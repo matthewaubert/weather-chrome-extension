@@ -107,3 +107,12 @@ function renderForecast(data) {
     day.condition.innerText = data[i].condition.text; // render condition
   });
 }
+
+// toggle backdrop and spinner
+function toggleLoadComponent() {
+  Object.keys(dom.loadComponent).forEach((el) => {
+    dom.loadComponent[el].classList.toggle('visible');
+  });
+}
+
+export { toggleLoadComponent };
