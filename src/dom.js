@@ -1,4 +1,5 @@
 const dom = {
+  root: document.documentElement,
   form: {
     form: document.querySelector('form'),
     searchInput: document.querySelector('#search-input'),

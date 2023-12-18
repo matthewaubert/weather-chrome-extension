@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import wiMap from './maps/wi-map.js';
+import colorMap from './maps/color-map.js';
 import dom from './dom.js';
 import {
   storageAvailable,
@@ -53,6 +54,7 @@ export default function renderWeather(data) {
   renderCurrentWeatherPrimary(data.current);
   renderCurrentWeatherSecondary(data.current);
   renderForecast(data.forecast);
+  renderColorScheme(data.current);
 }
 
 // render location display with weather data
@@ -106,6 +108,47 @@ function renderForecast(data) {
     day.icon.innerText = wiMap.day[data[i].condition.code]; // render icon
     day.condition.innerText = data[i].condition.text; // render condition
   });
+}
+
+// render correct colors based on weather code
+function renderColorScheme(data) {
+  const colors = {
+    day: {
+      bg: 'var(--sky-600), var(--sky-900)',
+      searchBar: 'var(--sky-800)',
+      textLight: 'var(--sky-300)',
+    },
+    night: {
+      bg: 'var(--blue-800), var(--blue-975)',
+      searchBar: 'var(--blue-950)',
+      textLight: 'var(--blue-400)',
+    },
+    gray: {
+      bg: 'var(--gray-600), var(--gray-900)',
+      searchBar: 'var(--gray-800)',
+      textLight: 'var(--gray-400)',
+    },
+    bad: {
+      bg: 'var(--purple-700), var(--purple-950)',
+      searchBar: 'var(--purple-900)',
+      textLight: 'var(--purple-400)',
+    },
+  };
+
+  const dayOrNight = data.isDay ? 'day' : 'night';
+
+  dom.root.style.setProperty(
+    '--bg-gradient',
+    colors[colorMap[dayOrNight][data.condition.code]].bg
+  );
+  dom.root.style.setProperty(
+    '--search-bar',
+    colors[colorMap[dayOrNight][data.condition.code]].searchBar
+  );
+  dom.root.style.setProperty(
+    '--text-light',
+    colors[colorMap[dayOrNight][data.condition.code]].textLight
+  );
 }
 
 // toggle backdrop and spinner

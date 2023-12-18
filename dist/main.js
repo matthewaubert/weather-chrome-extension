@@ -87,6 +87,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var dom = {
+  root: document.documentElement,
   form: {
     form: document.querySelector('form'),
     searchInput: document.querySelector('#search-input')
@@ -203,6 +204,216 @@ function deserializeSystem() {
   return localStorage.getItem('wceSystem');
 }
 
+
+/***/ }),
+
+/***/ "./src/maps/color-map.js":
+/*!*******************************!*\
+  !*** ./src/maps/color-map.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var colorMap = {
+  day: {
+    1000: 'day',
+    // Sunny
+    1003: 'day',
+    // Partly cloudy
+    1006: 'day',
+    // Cloudy
+    1009: 'gray',
+    // Overcast
+    1030: 'day',
+    // Mist
+    1063: 'day',
+    // Patchy rain possible
+    1066: 'day',
+    // Patchy snow possible
+    1069: 'day',
+    // Patchy sleet possible
+    1072: 'day',
+    // Patchy freezing drizzle possible
+    1087: 'day',
+    // Thundery outbreaks possible
+    1114: 'gray',
+    // Blowing snow
+    1117: 'gray',
+    // Blizzard
+    1135: 'gray',
+    // Fog
+    1147: 'gray',
+    // Freezing fog
+    1150: 'bad',
+    // Patchy light drizzle
+    1153: 'gray',
+    // Light drizzle
+    1168: 'gray',
+    // Freezing drizzle
+    1171: 'gray',
+    // Heavy freezing drizzle
+    1180: 'gray',
+    // Patchy light rain
+    1183: 'gray',
+    // Light rain
+    1186: 'gray',
+    // Moderate rain at times
+    1189: 'gray',
+    // Moderate rain
+    1192: 'gray',
+    // Heavy rain at times
+    1195: 'gray',
+    // Heavy rain
+    1198: 'gray',
+    // Light freezing rain
+    1201: 'gray',
+    // Moderate or heavy freezing rain
+    1204: 'gray',
+    // Light sleet
+    1207: 'gray',
+    // Moderate or heavy sleet
+    1210: 'gray',
+    // Patchy light snow
+    1213: 'gray',
+    // Light snow
+    1216: 'gray',
+    // Patchy moderate snow
+    1219: 'gray',
+    // Moderate snow
+    1222: 'gray',
+    // Patchy heavy snow
+    1225: 'gray',
+    // Heavy snow
+    1237: 'gray',
+    // Ice pellets
+    1240: 'gray',
+    // Light rain shower
+    1243: 'gray',
+    // Moderate or heavy rain shower
+    1246: 'gray',
+    // Torrential rain shower
+    1249: 'gray',
+    // Light sleet showers
+    1252: 'gray',
+    // Moderate or heavy sleet showers
+    1255: 'gray',
+    // Light snow showers
+    1258: 'gray',
+    // Moderate or heavy snow showers
+    1261: 'gray',
+    // Light showers of ice pellets
+    1264: 'gray',
+    // Moderate or heavy showers of ice pellets
+    1273: 'bad',
+    // Patchy light rain with thunder
+    1276: 'bad',
+    // Moderate or heavy rain with thunder
+    1279: 'bad',
+    // Patchy light snow with thunder
+    1282: 'bad' // Moderate or heavy snow with thunder
+  },
+  night: {
+    1000: 'night',
+    // Clear
+    1003: 'night',
+    // Partly cloudy
+    1006: 'night',
+    // Cloudy
+    1009: 'gray',
+    // Overcast
+    1030: 'night',
+    // Mist
+    1063: 'night',
+    // Patchy rain possible
+    1066: 'night',
+    // Patchy snow possible
+    1069: 'night',
+    // Patchy sleet possible
+    1072: 'night',
+    // Patchy freezing drizzle possible
+    1087: 'night',
+    // Thundery outbreaks possible
+    1114: 'gray',
+    // Blowing snow
+    1117: 'gray',
+    // Blizzard
+    1135: 'gray',
+    // Fog
+    1147: 'gray',
+    // Freezing fog
+    1150: 'bad',
+    // Patchy light drizzle
+    1153: 'gray',
+    // Light drizzle
+    1168: 'gray',
+    // Freezing drizzle
+    1171: 'gray',
+    // Heavy freezing drizzle
+    1180: 'gray',
+    // Patchy light rain
+    1183: 'gray',
+    // Light rain
+    1186: 'gray',
+    // Moderate rain at times
+    1189: 'gray',
+    // Moderate rain
+    1192: 'gray',
+    // Heavy rain at times
+    1195: 'gray',
+    // Heavy rain
+    1198: 'gray',
+    // Light freezing rain
+    1201: 'gray',
+    // Moderate or heavy freezing rain
+    1204: 'gray',
+    // Light sleet
+    1207: 'gray',
+    // Moderate or heavy sleet
+    1210: 'gray',
+    // Patchy light snow
+    1213: 'gray',
+    // Light snow
+    1216: 'gray',
+    // Patchy moderate snow
+    1219: 'gray',
+    // Moderate snow
+    1222: 'gray',
+    // Patchy heavy snow
+    1225: 'gray',
+    // Heavy snow
+    1237: 'gray',
+    // Ice pellets
+    1240: 'gray',
+    // Light rain shower
+    1243: 'gray',
+    // Moderate or heavy rain shower
+    1246: 'gray',
+    // Torrential rain shower
+    1249: 'gray',
+    // Light sleet showers
+    1252: 'gray',
+    // Moderate or heavy sleet showers
+    1255: 'gray',
+    // Light snow showers
+    1258: 'gray',
+    // Moderate or heavy snow showers
+    1261: 'gray',
+    // Light showers of ice pellets
+    1264: 'gray',
+    // Moderate or heavy showers of ice pellets
+    1273: 'bad',
+    // Patchy light rain with thunder
+    1276: 'bad',
+    // Moderate or heavy rain with thunder
+    1279: 'bad',
+    // Patchy light snow with thunder
+    1282: 'bad' // Moderate or heavy snow with thunder
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (colorMap);
 
 /***/ }),
 
@@ -437,17 +648,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ renderWeather),
 /* harmony export */   toggleLoadComponent: () => (/* binding */ toggleLoadComponent)
 /* harmony export */ });
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/format.mjs");
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/format.mjs");
 /* harmony import */ var _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./maps/wi-map.js */ "./src/maps/wi-map.js");
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dom.js */ "./src/dom.js");
-/* harmony import */ var _local_storage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./local-storage.js */ "./src/local-storage.js");
+/* harmony import */ var _maps_color_map_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./maps/color-map.js */ "./src/maps/color-map.js");
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dom.js */ "./src/dom.js");
+/* harmony import */ var _local_storage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./local-storage.js */ "./src/local-storage.js");
+
 
 
 
 
 
 // add event listeners
-_dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].systemToggle.addEventListener('change', switchSystem);
+_dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].systemToggle.addEventListener('change', switchSystem);
 
 // variable to hold weather data cache
 var weatherDataCache;
@@ -467,10 +680,10 @@ var system = initSystem();
 
 // init system to value in localStorage or default to imperial
 function initSystem() {
-  if ((0,_local_storage_js__WEBPACK_IMPORTED_MODULE_2__.storageAvailable)('localStorage') && localStorage.getItem('wceSystem')) {
+  if ((0,_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.storageAvailable)('localStorage') && localStorage.getItem('wceSystem')) {
     // if system is metric, check slider and return metric
-    if ((0,_local_storage_js__WEBPACK_IMPORTED_MODULE_2__.deserializeSystem)() === 'metric') {
-      _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].systemToggle.checked = true;
+    if ((0,_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.deserializeSystem)() === 'metric') {
+      _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].systemToggle.checked = true;
       return metric;
     }
   }
@@ -480,7 +693,7 @@ function initSystem() {
 // switch system between imperial and metric
 function switchSystem() {
   system = system.name === 'imperial' ? metric : imperial;
-  if ((0,_local_storage_js__WEBPACK_IMPORTED_MODULE_2__.storageAvailable)('localStorage')) (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_2__.serializeSystem)(system.name); // cache system
+  if ((0,_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.storageAvailable)('localStorage')) (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.serializeSystem)(system.name); // cache system
   renderWeather(weatherDataCache);
 }
 
@@ -491,43 +704,44 @@ function renderWeather(data) {
   renderCurrentWeatherPrimary(data.current);
   renderCurrentWeatherSecondary(data.current);
   renderForecast(data.forecast);
+  renderColorScheme(data.current);
 }
 
 // render location display with weather data
 function renderLocation(data) {
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].location.city.innerText = data.location.city;
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].location.region.innerText = data.location.region ? "".concat(data.location.region, ",") : '';
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].location.country.innerText = data.location.country;
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].location.time.innerText = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.format)(data.time, 'PPPPp');
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].location.city.innerText = data.location.city;
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].location.region.innerText = data.location.region ? "".concat(data.location.region, ",") : '';
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].location.country.innerText = data.location.country;
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].location.time.innerText = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__.format)(data.time, 'PPPPp');
 }
 
 // render primary current weather info
 function renderCurrentWeatherPrimary(data) {
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].current.icon.innerText = data.isDay ? _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].day[data.condition.code] : _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].night[data.condition.code]; // render icon
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].current.text.innerText = data.condition.text; // render condition text
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].current.temp.innerText = "".concat(data["temp".concat(system.temp)], "\xB0").concat(system.temp); // render current temp
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].current.feelsLike.innerText = "Feels like ".concat(data["feelsLike".concat(system.temp)], "\xB0").concat(system.temp); // render current feelslike
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].current.icon.innerText = data.isDay ? _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].day[data.condition.code] : _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].night[data.condition.code]; // render icon
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].current.text.innerText = data.condition.text; // render condition text
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].current.temp.innerText = "".concat(data["temp".concat(system.temp)], "\xB0").concat(system.temp); // render current temp
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].current.feelsLike.innerText = "Feels like ".concat(data["feelsLike".concat(system.temp)], "\xB0").concat(system.temp); // render current feelslike
 }
 
 // render secondary current weather info
 function renderCurrentWeatherSecondary(data) {
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.highLow.innerText = "".concat(data["maxTemp".concat(system.temp)], "\xB0 / ").concat(data["minTemp".concat(system.temp)], "\xB0");
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.precip.innerText = "".concat(data.chanceOfRain, "%");
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.humidity.innerText = "".concat(data.humidity, "%");
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.wind.innerText = "".concat(data["wind".concat(system.speed)], " ").concat(system.speed.toLowerCase());
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.cloud.innerText = "".concat(data.cloud, "%");
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.uv.innerText = "".concat(data.uv, " of 11");
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.sunrise.innerText = data.sunrise;
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.sunset.innerText = data.sunset;
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].today.moonPhase.innerText = _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].moonPhase[data.moonPhase];
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.highLow.innerText = "".concat(data["maxTemp".concat(system.temp)], "\xB0 / ").concat(data["minTemp".concat(system.temp)], "\xB0");
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.precip.innerText = "".concat(data.chanceOfRain, "%");
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.humidity.innerText = "".concat(data.humidity, "%");
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.wind.innerText = "".concat(data["wind".concat(system.speed)], " ").concat(system.speed.toLowerCase());
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.cloud.innerText = "".concat(data.cloud, "%");
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.uv.innerText = "".concat(data.uv, " of 11");
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.sunrise.innerText = data.sunrise;
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.sunset.innerText = data.sunset;
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].today.moonPhase.innerText = _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].moonPhase[data.moonPhase];
 }
 
 // render forecast weather info
 function renderForecast(data) {
   // iterate over each day in forecast
-  _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].forecast.forEach(function (day, i) {
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].forecast.forEach(function (day, i) {
     // render title
-    if (day.title.innerText !== 'Today') day.title.innerText = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.format)(data[i].date, 'cccc');
+    if (day.title.innerText !== 'Today') day.title.innerText = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__.format)(data[i].date, 'cccc');
     day.high.innerText = "".concat(data[i]["maxTemp".concat(system.temp)], "\xB0"); // render high
     day.low.innerText = "/ ".concat(data[i]["minTemp".concat(system.temp)], "\xB0"); // render low
     day.icon.innerText = _maps_wi_map_js__WEBPACK_IMPORTED_MODULE_0__["default"].day[data[i].condition.code]; // render icon
@@ -535,10 +749,40 @@ function renderForecast(data) {
   });
 }
 
+// render correct colors based on weather code
+function renderColorScheme(data) {
+  var colors = {
+    day: {
+      bg: 'var(--sky-600), var(--sky-900)',
+      searchBar: 'var(--sky-800)',
+      textLight: 'var(--sky-300)'
+    },
+    night: {
+      bg: 'var(--blue-800), var(--blue-975)',
+      searchBar: 'var(--blue-950)',
+      textLight: 'var(--blue-400)'
+    },
+    gray: {
+      bg: 'var(--gray-600), var(--gray-900)',
+      searchBar: 'var(--gray-800)',
+      textLight: 'var(--gray-400)'
+    },
+    bad: {
+      bg: 'var(--purple-700), var(--purple-950)',
+      searchBar: 'var(--purple-900)',
+      textLight: 'var(--purple-400)'
+    }
+  };
+  var dayOrNight = data.isDay ? 'day' : 'night';
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].root.style.setProperty('--bg-gradient', colors[_maps_color_map_js__WEBPACK_IMPORTED_MODULE_1__["default"][dayOrNight][data.condition.code]].bg);
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].root.style.setProperty('--search-bar', colors[_maps_color_map_js__WEBPACK_IMPORTED_MODULE_1__["default"][dayOrNight][data.condition.code]].searchBar);
+  _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].root.style.setProperty('--text-light', colors[_maps_color_map_js__WEBPACK_IMPORTED_MODULE_1__["default"][dayOrNight][data.condition.code]].textLight);
+}
+
 // toggle backdrop and spinner
 function toggleLoadComponent() {
-  Object.keys(_dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].loadComponent).forEach(function (el) {
-    _dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].loadComponent[el].classList.toggle('visible');
+  Object.keys(_dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].loadComponent).forEach(function (el) {
+    _dom_js__WEBPACK_IMPORTED_MODULE_2__["default"].loadComponent[el].classList.toggle('visible');
   });
 }
 
