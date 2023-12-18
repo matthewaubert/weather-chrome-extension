@@ -2,6 +2,9 @@ import { format } from 'date-fns';
 import wiMap from './maps/wi-map.js';
 import dom from './dom.js';
 
+// add event listeners
+dom.systemToggle.addEventListener('change', switchSystem);
+
 // variable to hold weather data cache
 let weatherDataCache;
 
@@ -17,6 +20,12 @@ const metric = {
   speed: 'Kph',
 };
 let system = imperial;
+
+// switch system between imperial and metric
+function switchSystem() {
+  system = system.name === 'imperial' ? metric : imperial;
+  renderWeather(weatherDataCache);
+}
 
 // run all render funcs to display weather data
 export default function renderWeather(data) {

@@ -4,6 +4,7 @@ const dom = {
     form: document.querySelector('form'),
     searchInput: document.querySelector('#search-input'),
   },
+  systemToggle: document.querySelector('#system-toggle'),
   location: {
     city: document.querySelector('.city'),
     region: document.querySelector('.region'),
@@ -26,7 +27,7 @@ const dom = {
     sunrise: document.querySelector('.sunrise').lastElementChild,
     sunset: document.querySelector('.sunset').lastElementChild,
     moonPhase: document.querySelector('.moon-phase').lastElementChild,
-  }
+  },
 };
 
 export default dom;

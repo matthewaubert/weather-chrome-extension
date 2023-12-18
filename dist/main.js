@@ -92,6 +92,7 @@ var dom = {
     form: document.querySelector('form'),
     searchInput: document.querySelector('#search-input')
   },
+  systemToggle: document.querySelector('#system-toggle'),
   location: {
     city: document.querySelector('.city'),
     region: document.querySelector('.region'),
@@ -357,6 +358,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// add event listeners
+_dom_js__WEBPACK_IMPORTED_MODULE_1__["default"].systemToggle.addEventListener('change', switchSystem);
+
 // variable to hold weather data cache
 var weatherDataCache;
 
@@ -372,6 +376,12 @@ var metric = {
   speed: 'Kph'
 };
 var system = imperial;
+
+// switch system between imperial and metric
+function switchSystem() {
+  system = system.name === 'imperial' ? metric : imperial;
+  renderWeather(weatherDataCache);
+}
 
 // run all render funcs to display weather data
 function renderWeather(data) {
