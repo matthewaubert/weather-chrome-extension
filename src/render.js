@@ -65,45 +65,14 @@ function renderForecast(data, system) {
   });
 }
 
-// render correct colors based on weather code
+// render correct color scheme based on weather code
 function renderColorScheme(data) {
-  const colors = {
-    day: {
-      bg: 'var(--sky-600), var(--sky-900)',
-      searchBar: 'var(--sky-800)',
-      textLight: 'var(--sky-300)',
-    },
-    night: {
-      bg: 'var(--blue-800), var(--blue-975)',
-      searchBar: 'var(--blue-950)',
-      textLight: 'var(--blue-400)',
-    },
-    gray: {
-      bg: 'var(--gray-600), var(--gray-900)',
-      searchBar: 'var(--gray-800)',
-      textLight: 'var(--gray-400)',
-    },
-    bad: {
-      bg: 'var(--purple-700), var(--purple-950)',
-      searchBar: 'var(--purple-900)',
-      textLight: 'var(--purple-400)',
-    },
-  };
+  const colorScheme =
+    colorMap.schemes[colorMap[data.isDayOrNight()][data.condition.code]];
 
-  const dayOrNight = data.isDay ? 'day' : 'night';
-
-  dom.root.style.setProperty(
-    '--bg-gradient',
-    colors[colorMap[dayOrNight][data.condition.code]].bg,
-  );
-  dom.root.style.setProperty(
-    '--search-bar',
-    colors[colorMap[dayOrNight][data.condition.code]].searchBar,
-  );
-  dom.root.style.setProperty(
-    '--text-light',
-    colors[colorMap[dayOrNight][data.condition.code]].textLight,
-  );
+  dom.root.style.setProperty('--bg-gradient', colorScheme.bg);
+  dom.root.style.setProperty('--search-bar', colorScheme.searchBar);
+  dom.root.style.setProperty('--text-light', colorScheme.textLight);
 }
 
 // toggle backdrop and spinner

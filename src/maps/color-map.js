@@ -99,6 +99,32 @@ const colorMap = {
     1279: 'bad', // Patchy light snow with thunder
     1282: 'bad', // Moderate or heavy snow with thunder
   },
+  schemes: {
+    day: {
+      badge: '#0369a1',
+      bg: 'var(--sky-600), var(--sky-900)',
+      searchBar: 'var(--sky-800)',
+      textLight: 'var(--sky-300)',
+    },
+    night: {
+      badge: '#1e3a8a',
+      bg: 'var(--blue-800), var(--blue-975)',
+      searchBar: 'var(--blue-950)',
+      textLight: 'var(--blue-400)',
+    },
+    gray: {
+      badge: '#374151',
+      bg: 'var(--gray-600), var(--gray-900)',
+      searchBar: 'var(--gray-800)',
+      textLight: 'var(--gray-400)',
+    },
+    bad: {
+      badge: '#6b21a8',
+      bg: 'var(--purple-700), var(--purple-950)',
+      searchBar: 'var(--purple-900)',
+      textLight: 'var(--purple-400)',
+    },
+  }
 };
 
 export default colorMap;

@@ -46,4 +46,8 @@ export default class CurrentWeather {
     this.windKph = windKph;
     this.windMph = windMph;
   }
+
+  isDayOrNight() {
+    return this.isDay ? 'day' : 'night';
+  }
 }
