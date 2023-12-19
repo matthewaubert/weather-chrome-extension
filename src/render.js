@@ -3,6 +3,16 @@ import wiMap from './maps/wi-map.js';
 import colorMap from './maps/color-map.js';
 import dom from './maps/dom.js';
 
+// render fetch error message to error display element
+function renderError(err) {
+  dom.errorDisplay.innerText = err;
+}
+
+// clear error message from error display element
+function clearError() {
+  dom.errorDisplay.innerText = '';
+}
+
 // run all render funcs to display weather data
 export default function renderWeather(data, system) {
   renderLocation(data.current);
@@ -82,4 +92,4 @@ function toggleLoadComponent() {
   });
 }
 
-export { toggleLoadComponent };
+export { renderError, clearError, toggleLoadComponent };

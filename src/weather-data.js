@@ -1,16 +1,15 @@
 import { parse } from 'date-fns';
 import CurrentWeather from './classes/current-weather.js';
 import Forecast from './classes/forecast.js';
-import dom from './maps/dom.js';
 
 // fetch and process weather data;
 // input: location;
 // output: obj which contains CurrentWeather instance and array of Forecast instances
 export default async function getWeatherData(location) {
   const response = await fetchWeather(location);
-  if (response === null) return null; // if error, return null
+  if (response.value === null) return response; // if error, return error msg
 
-  const weatherData = processData(response);
+  const weatherData = processData(response.value);
 
   return weatherData;
 }
@@ -27,13 +26,16 @@ async function fetchWeather(location) {
     // if response not okay throw error
     if (!response.ok) throw new Error(`${location} not found`);
 
-    dom.errorDisplay.innerText = '';
     const weatherData = await response.json();
-    return weatherData;
+    return {
+      value: weatherData,
+      error: null,
+    };
   } catch (err) {
-    // add error text to error display
-    dom.errorDisplay.innerText = err;
-    return null;
+    return {
+      value: null,
+      error: err,
+    };
   }
 }
 

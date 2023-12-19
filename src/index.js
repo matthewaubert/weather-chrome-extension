@@ -1,5 +1,9 @@
 import getWeatherData from './weather-data.js';
-import renderWeather, { toggleLoadComponent } from './render.js';
+import renderWeather, {
+  toggleLoadComponent,
+  renderError,
+  clearError,
+} from './render.js';
 import System from './classes/system.js';
 import dom from './maps/dom.js';
 import {
@@ -27,6 +31,9 @@ function initApp() {
     // if system is metric, check slider and return metric
     currentSystem = System.getNewSystem(deserializeSystem());
     if (currentSystem.name === 'metric') dom.systemToggle.checked = true;
+  } else {
+    currentSystem = System.getNewSystem('imperial');
+    dom.systemToggle.checked = false;
   }
 
   // init weather with location from localStorage or default to philadelphia
@@ -41,13 +48,14 @@ function initApp() {
 async function showWeather(location) {
   toggleLoadComponent(); // show loading component
   const weatherData = await getWeatherData(location);
-  if (weatherData !== null) {
+  if (!weatherData.error) {
+    clearError();
     weatherDataCache = weatherData;
-    
+
     renderWeather(weatherDataCache, currentSystem);
     setBadge(weatherDataCache.current, currentSystem);
     if (storageAvailable('localStorage')) serializeLocation(location); // cache location in localStorage
-  }
+  } else renderError(weatherData.error);
   toggleLoadComponent(); // hide loading component
 }
 
