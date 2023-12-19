@@ -3,8 +3,13 @@
   "name": "Weather",
   "version": "1.0",
   "description": "Show the current weather.",
+  "permissions": ["alarms"],
   "action": {
     "default_popup": "dist/index.html",
     "default_icon": "dist/img/favicon-16x16.png"
+  },
+  "background": {
+    "service_worker": "dist/service-worker.js",
+    "type": "module"
   }
 }

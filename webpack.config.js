@@ -1,11 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    'main': './src/index.js',
+    'service-worker': './src/service-worker.js'
+  },
   mode: 'development',
   devtool: 'cheap-module-source-map',
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
