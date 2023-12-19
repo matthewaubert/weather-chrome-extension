@@ -9,10 +9,9 @@ import dom from './maps/dom.js';
 import {
   storageAvailable,
   serializeSystem,
-  deserializeSystem,
-  deserializeLocation,
   serializeLocation,
-} from './local-storage.js';
+  deserialize,
+} from './chrome-storage.js';
 import setBadge from './action.js';
 
 // add event listeners
@@ -25,20 +24,20 @@ let currentSystem;
 let weatherDataCache;
 
 // init system and weather
-function initApp() {
-  // init system with value in localStorage or default to imperial
-  if (storageAvailable('localStorage') && localStorage.getItem('wceSystem')) {
+async function initApp() {
+  // init system with value in chrome.storage.local or default to imperial
+  if ((await storageAvailable('local')) && (await deserialize('wceSystem'))) {
     // if system is metric, check slider and return metric
-    currentSystem = System.getNewSystem(deserializeSystem());
+    currentSystem = System.getNewSystem(await deserialize('wceSystem'));
     if (currentSystem.name === 'metric') dom.systemToggle.checked = true;
   } else {
     currentSystem = System.getNewSystem('imperial');
     dom.systemToggle.checked = false;
   }
 
-  // init weather with location from localStorage or default to philadelphia
-  if (storageAvailable('localStorage') && localStorage.getItem('wceLocation')) {
-    showWeather(deserializeLocation());
+  // init weather with location from chrome.storage.local or default to philadelphia
+  if ((await storageAvailable('local')) && (await deserialize('wceLocation'))) {
+    showWeather(await deserialize('wceLocation'));
   } else {
     showWeather('philadelphia');
   }
@@ -54,7 +53,7 @@ async function showWeather(location) {
 
     renderWeather(weatherDataCache, currentSystem);
     setBadge(weatherDataCache.current, currentSystem);
-    if (storageAvailable('localStorage')) serializeLocation(location); // cache location in localStorage
+    if (await storageAvailable('local')) serializeLocation(location); // cache location in chrome.storage.local
   } else renderError(weatherData.error);
   toggleLoadComponent(); // hide loading component
 }
@@ -66,10 +65,10 @@ function handleSearch(e) {
 }
 
 // switch system between imperial and metric
-function switchSystem() {
+async function switchSystem() {
   currentSystem.switchSystem();
 
   renderWeather(weatherDataCache, currentSystem);
   setBadge(weatherDataCache.current, currentSystem);
-  if (storageAvailable('localStorage')) serializeSystem(currentSystem.name); // cache system name in localStorage
+  if (await storageAvailable('local')) serializeSystem(currentSystem.name); // cache system name in chrome.storage.local
 }
