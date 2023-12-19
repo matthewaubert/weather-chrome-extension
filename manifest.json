@@ -5,6 +5,6 @@
   "description": "Show the current weather.",
   "action": {
     "default_popup": "dist/index.html",
-    "default_icon": "images/hi.png"
+    "default_icon": "dist/img/favicon-16x16.png"
   }
 }

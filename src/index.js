@@ -9,6 +9,7 @@ import {
   deserializeLocation,
   serializeLocation,
 } from './local-storage.js';
+import setBadge from './action.js';
 
 // add event listeners
 document.addEventListener('DOMContentLoaded', initApp);
@@ -42,7 +43,9 @@ async function showWeather(location) {
   const weatherData = await getWeatherData(location);
   if (weatherData !== null) {
     weatherDataCache = weatherData;
-    renderWeather(weatherData, currentSystem);
+    
+    renderWeather(weatherDataCache, currentSystem);
+    setBadge(weatherDataCache.current, currentSystem);
     if (storageAvailable('localStorage')) serializeLocation(location); // cache location in localStorage
   }
   toggleLoadComponent(); // hide loading component
@@ -58,6 +61,7 @@ function handleSearch(e) {
 function switchSystem() {
   currentSystem.switchSystem();
 
-  if (storageAvailable('localStorage')) serializeSystem(currentSystem.name); // cache system name in localStorage
   renderWeather(weatherDataCache, currentSystem);
+  setBadge(weatherDataCache.current, currentSystem);
+  if (storageAvailable('localStorage')) serializeSystem(currentSystem.name); // cache system name in localStorage
 }
