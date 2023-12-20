@@ -2,14 +2,20 @@
   "manifest_version": 3,
   "name": "Weather",
   "version": "1.0",
-  "description": "Show the current weather.",
+  "description": "See current weather and forecast from the pop-up. The current temperature is displayed on the icon and updates automatically.",
+  "icons": {
+    "16": "dist/img/icon-16.png",
+    "32": "dist/img/icon-32.png",
+    "48": "dist/img/icon-48.png",
+    "128": "dist/img/icon-128.png"
+  },
   "permissions": [
     "alarms",
     "storage"
   ],
   "action": {
     "default_popup": "dist/index.html",
-    "default_icon": "dist/img/favicon-16x16.png"
+    "default_icon": "dist/img/icon-16.png"
   },
   "background": {
     "service_worker": "dist/service-worker.js",
